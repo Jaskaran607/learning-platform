@@ -1,0 +1,2152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuberac Academy - IT Training Excellence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .hero-gradient {
+            background: linear-gradient(135deg, #065f46 0%, #10b981 100%);
+        }
+        
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(16, 185, 129, 0.2);
+        }
+        
+        .nav-link {
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover {
+            color: #10b981;
+            transform: translateY(-2px);
+        }
+        
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .pulse-animation {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal.active {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 1rem;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        
+        @keyframes modalSlideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .course-icon {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #10b981, #065f46);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <h1 class="text-2xl font-bold text-green-600">🎓 Kuberac Academy</h1>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-4">
+                        <a href="#" onclick="showPage('home')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Home</a>
+                        <a href="#" onclick="showPage('courses')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Courses</a>
+                        <a href="#" onclick="showPage('about')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">About</a>
+                        <a href="#" onclick="showPage('contact')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Contact</a>
+                        <a href="#" onclick="showPage('location')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Location</a>
+                        <a href="#" onclick="showPage('test')" class="nav-link text-gray-700 hover:text-green-600 px-3 py-2 rounded-md text-sm font-medium">Test</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 hover:text-green-600">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="md:hidden hidden bg-white border-t">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#" onclick="showPage('home')" class="block px-3 py-2 text-gray-700 hover:text-green-600">Home</a>
+                <a href="#" onclick="showPage('courses')" class="block px-3 py-2 text-gray-700 hover:text-green-600">Courses</a>
+                <a href="#" onclick="showPage('about')" class="block px-3 py-2 text-gray-700 hover:text-green-600">About</a>
+                <a href="#" onclick="showPage('contact')" class="block px-3 py-2 text-gray-700 hover:text-green-600">Contact</a>
+                <a href="#" onclick="showPage('location')" class="block px-3 py-2 text-gray-700 hover:text-green-600">Location</a>
+                <a href="#" onclick="showPage('test')" class="block px-3 py-2 text-gray-700 hover:text-green-600">Test</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page -->
+    <div id="home-page" class="page">
+        <!-- Hero Section -->
+        <section class="hero-gradient text-white pt-20">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <div class="text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold mb-6 pulse-animation">Welcome to Kuberac Academy</h1>
+                    <p class="text-xl md:text-2xl mb-8 opacity-90">Master IT Skills with Expert Training</p>
+                    <button onclick="showPage('courses')" class="bg-white text-green-600 px-8 py-4 rounded-full text-lg font-semibold hover:bg-gray-100 transition duration-300 transform hover:scale-105">
+                        Explore Courses
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Image Carousel -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-12">Our Learning Environment</h2>
+                <div class="carousel-container relative bg-gray-200 rounded-2xl overflow-hidden" style="height: 500px;">
+                    <div class="carousel-slide active">
+                        <div class="w-full h-full bg-gradient-to-r from-green-400 to-green-600 flex items-stretch justify-center">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-7xl px-8 py-12">
+                                <div class="text-center md:text-left text-white flex flex-col justify-center min-h-full">
+                                    <h3 class="text-4xl md:text-6xl font-bold mb-8 leading-tight">Modern Computer Labs</h3>
+                                    <p class="text-xl md:text-3xl mb-10 leading-relaxed">State-of-the-art facilities with latest hardware and software for hands-on learning experience</p>
+                                    <div class="flex items-center justify-center md:justify-start space-x-8">
+                                        <div class="bg-white bg-opacity-20 rounded-full p-6">
+                                            <i class="fas fa-check text-white text-3xl"></i>
+                                        </div>
+                                        <span class="text-2xl font-semibold">Latest Technology</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center items-center min-h-full">
+                                    <svg width="500" height="400" viewBox="0 0 300 200" class="drop-shadow-lg w-full h-auto">
+                                        <!-- Computer Lab Illustration -->
+                                        <rect x="20" y="60" width="260" height="120" rx="10" fill="#ffffff" opacity="0.9"/>
+                                        <rect x="30" y="70" width="50" height="30" rx="3" fill="#1f2937"/>
+                                        <rect x="32" y="72" width="46" height="26" rx="2" fill="#3b82f6"/>
+                                        <rect x="90" y="70" width="50" height="30" rx="3" fill="#1f2937"/>
+                                        <rect x="92" y="72" width="46" height="26" rx="2" fill="#10b981"/>
+                                        <rect x="150" y="70" width="50" height="30" rx="3" fill="#1f2937"/>
+                                        <rect x="152" y="72" width="46" height="26" rx="2" fill="#f59e0b"/>
+                                        <rect x="210" y="70" width="50" height="30" rx="3" fill="#1f2937"/>
+                                        <rect x="212" y="72" width="46" height="26" rx="2" fill="#ef4444"/>
+                                        
+                                        <!-- Desks -->
+                                        <rect x="25" y="100" width="60" height="8" fill="#8b5cf6"/>
+                                        <rect x="95" y="100" width="60" height="8" fill="#8b5cf6"/>
+                                        <rect x="165" y="100" width="60" height="8" fill="#8b5cf6"/>
+                                        <rect x="235" y="100" width="60" height="8" fill="#8b5cf6"/>
+                                        
+                                        <!-- Chairs -->
+                                        <circle cx="55" cy="120" r="8" fill="#6b7280"/>
+                                        <circle cx="125" cy="120" r="8" fill="#6b7280"/>
+                                        <circle cx="195" cy="120" r="8" fill="#6b7280"/>
+                                        <circle cx="265" cy="120" r="8" fill="#6b7280"/>
+                                        
+                                        <!-- Students -->
+                                        <circle cx="55" cy="115" r="5" fill="#fbbf24"/>
+                                        <circle cx="125" cy="115" r="5" fill="#f87171"/>
+                                        <circle cx="195" cy="115" r="5" fill="#34d399"/>
+                                        
+                                        <!-- Whiteboard -->
+                                        <rect x="120" y="20" width="60" height="30" rx="3" fill="#ffffff"/>
+                                        <line x1="125" y1="25" x2="175" y2="25" stroke="#10b981" stroke-width="2"/>
+                                        <line x1="125" y1="30" x2="165" y2="30" stroke="#10b981" stroke-width="2"/>
+                                        <line x1="125" y1="35" x2="170" y2="35" stroke="#10b981" stroke-width="2"/>
+                                        <line x1="125" y1="40" x2="160" y2="40" stroke="#10b981" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="w-full h-full bg-gradient-to-r from-blue-400 to-green-500 flex items-stretch justify-center">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-7xl px-8 py-12">
+                                <div class="text-center md:text-left text-white flex flex-col justify-center min-h-full">
+                                    <h3 class="text-4xl md:text-6xl font-bold mb-8 leading-tight">Expert Instructors</h3>
+                                    <p class="text-xl md:text-3xl mb-10 leading-relaxed">Learn from industry professionals with years of real-world experience and proven teaching methods</p>
+                                    <div class="flex items-center justify-center md:justify-start space-x-8">
+                                        <div class="bg-white bg-opacity-20 rounded-full p-6">
+                                            <i class="fas fa-star text-white text-3xl"></i>
+                                        </div>
+                                        <span class="text-2xl font-semibold">Industry Experts</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center items-center min-h-full">
+                                    <svg width="500" height="400" viewBox="0 0 300 200" class="drop-shadow-lg w-full h-auto">
+                                        <!-- Instructor Illustration -->
+                                        <rect x="50" y="40" width="200" height="140" rx="10" fill="#ffffff" opacity="0.9"/>
+                                        
+                                        <!-- Instructor -->
+                                        <circle cx="150" cy="80" r="20" fill="#fbbf24"/>
+                                        <rect x="135" y="100" width="30" height="40" rx="5" fill="#3b82f6"/>
+                                        <rect x="140" y="140" width="8" height="25" fill="#1f2937"/>
+                                        <rect x="152" y="140" width="8" height="25" fill="#1f2937"/>
+                                        
+                                        <!-- Whiteboard -->
+                                        <rect x="70" y="50" width="80" height="50" rx="3" fill="#f3f4f6"/>
+                                        <rect x="75" y="55" width="70" height="40" rx="2" fill="#ffffff"/>
+                                        
+                                        <!-- Code on board -->
+                                        <text x="80" y="65" font-family="monospace" font-size="6" fill="#10b981">def hello():</text>
+                                        <text x="80" y="72" font-family="monospace" font-size="6" fill="#3b82f6">  print("Hello")</text>
+                                        <text x="80" y="79" font-family="monospace" font-size="6" fill="#ef4444">  return True</text>
+                                        <text x="80" y="86" font-family="monospace" font-size="6" fill="#8b5cf6">hello()</text>
+                                        
+                                        <!-- Students -->
+                                        <circle cx="100" cy="130" r="8" fill="#f87171"/>
+                                        <circle cx="120" cy="135" r="8" fill="#34d399"/>
+                                        <circle cx="180" cy="135" r="8" fill="#fbbf24"/>
+                                        <circle cx="200" cy="130" r="8" fill="#a78bfa"/>
+                                        
+                                        <!-- Laptops -->
+                                        <rect x="95" y="140" width="12" height="8" rx="1" fill="#1f2937"/>
+                                        <rect x="115" y="145" width="12" height="8" rx="1" fill="#1f2937"/>
+                                        <rect x="175" y="145" width="12" height="8" rx="1" fill="#1f2937"/>
+                                        <rect x="195" y="140" width="12" height="8" rx="1" fill="#1f2937"/>
+                                        
+                                        <!-- Pointer -->
+                                        <line x1="155" y1="95" x2="140" y2="75" stroke="#ffffff" stroke-width="2"/>
+                                        <circle cx="140" cy="75" r="2" fill="#ffffff"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="w-full h-full bg-gradient-to-r from-purple-400 to-green-500 flex items-stretch justify-center">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center w-full max-w-7xl px-8 py-12">
+                                <div class="text-center md:text-left text-white flex flex-col justify-center min-h-full">
+                                    <h3 class="text-4xl md:text-6xl font-bold mb-8 leading-tight">Collaborative Learning</h3>
+                                    <p class="text-xl md:text-3xl mb-10 leading-relaxed">Interactive sessions, group projects, and peer-to-peer learning for better understanding</p>
+                                    <div class="flex items-center justify-center md:justify-start space-x-8">
+                                        <div class="bg-white bg-opacity-20 rounded-full p-6">
+                                            <i class="fas fa-users text-white text-3xl"></i>
+                                        </div>
+                                        <span class="text-2xl font-semibold">Team Projects</span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center items-center min-h-full">
+                                    <svg width="500" height="400" viewBox="0 0 300 200" class="drop-shadow-lg w-full h-auto">
+                                        <!-- Collaboration Illustration -->
+                                        <rect x="30" y="30" width="240" height="140" rx="15" fill="#ffffff" opacity="0.9"/>
+                                        
+                                        <!-- Round table -->
+                                        <circle cx="150" cy="100" r="40" fill="#8b5cf6" opacity="0.8"/>
+                                        
+                                        <!-- Students around table -->
+                                        <circle cx="150" cy="60" r="12" fill="#fbbf24"/>
+                                        <rect x="142" y="72" width="16" height="20" rx="3" fill="#3b82f6"/>
+                                        
+                                        <circle cx="190" cy="85" r="12" fill="#f87171"/>
+                                        <rect x="182" y="97" width="16" height="20" rx="3" fill="#10b981"/>
+                                        
+                                        <circle cx="190" cy="115" r="12" fill="#34d399"/>
+                                        <rect x="182" y="127" width="16" height="20" rx="3" fill="#f59e0b"/>
+                                        
+                                        <circle cx="150" cy="140" r="12" fill="#a78bfa"/>
+                                        <rect x="142" y="152" width="16" height="20" rx="3" fill="#ef4444"/>
+                                        
+                                        <circle cx="110" cy="115" r="12" fill="#fbbf24"/>
+                                        <rect x="102" y="127" width="16" height="20" rx="3" fill="#8b5cf6"/>
+                                        
+                                        <circle cx="110" cy="85" r="12" fill="#f87171"/>
+                                        <rect x="102" y="97" width="16" height="20" rx="3" fill="#3b82f6"/>
+                                        
+                                        <!-- Laptops on table -->
+                                        <rect x="135" y="90" width="15" height="10" rx="2" fill="#1f2937"/>
+                                        <rect x="137" y="92" width="11" height="6" rx="1" fill="#10b981"/>
+                                        
+                                        <rect x="155" y="95" width="15" height="10" rx="2" fill="#1f2937"/>
+                                        <rect x="157" y="97" width="11" height="6" rx="1" fill="#3b82f6"/>
+                                        
+                                        <!-- Discussion bubbles -->
+                                        <circle cx="120" cy="50" r="8" fill="#ffffff" opacity="0.8"/>
+                                        <text x="117" y="53" font-size="8" fill="#10b981">💡</text>
+                                        
+                                        <circle cx="180" cy="60" r="8" fill="#ffffff" opacity="0.8"/>
+                                        <text x="177" y="63" font-size="8" fill="#3b82f6">💻</text>
+                                        
+                                        <circle cx="200" cy="140" r="8" fill="#ffffff" opacity="0.8"/>
+                                        <text x="197" y="143" font-size="8" fill="#f59e0b">🚀</text>
+                                        
+                                        <!-- Connection lines -->
+                                        <line x1="150" y1="72" x2="182" y2="97" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                        <line x1="182" y1="97" x2="182" y2="127" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                        <line x1="182" y1="127" x2="142" y2="152" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                        <line x1="142" y1="152" x2="102" y2="127" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                        <line x1="102" y1="127" x2="102" y2="97" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                        <line x1="102" y1="97" x2="142" y2="72" stroke="#ffffff" stroke-width="1" opacity="0.5"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Carousel Controls -->
+                    <button onclick="previousSlide()" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition duration-300">
+                        <i class="fas fa-chevron-left text-green-600"></i>
+                    </button>
+                    <button onclick="nextSlide()" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-white bg-opacity-80 hover:bg-opacity-100 rounded-full p-3 transition duration-300">
+                        <i class="fas fa-chevron-right text-green-600"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="py-16 bg-green-600">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+                    <div class="card-hover">
+                        <div class="text-4xl font-bold mb-2">1000+</div>
+                        <div class="text-lg opacity-90">Students Trained</div>
+                    </div>
+                    <div class="card-hover">
+                        <div class="text-4xl font-bold mb-2">98%</div>
+                        <div class="text-lg opacity-90">Success Rate</div>
+                    </div>
+                    <div class="card-hover">
+                        <div class="text-4xl font-bold mb-2">15+</div>
+                        <div class="text-lg opacity-90">Expert Trainers</div>
+                    </div>
+                    <div class="card-hover">
+                        <div class="text-4xl font-bold mb-2">24/7</div>
+                        <div class="text-lg opacity-90">Support</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Courses Preview -->
+        <section class="py-16 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">Popular Courses</h2>
+                <p class="text-center text-gray-600 mb-12">Choose from our comprehensive range of IT courses</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <i class="fab fa-python course-icon mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Python Programming</h3>
+                        <p class="text-gray-600 mb-4">Master Python from basics to advanced</p>
+                        <div class="flex justify-center items-center mb-4">
+                            <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full text-sm">3 Months</span>
+                        </div>
+                        <button onclick="openModal('python-modal')" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <i class="fas fa-chart-line course-icon mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Data Science</h3>
+                        <p class="text-gray-600 mb-4">Analyze data and build ML models</p>
+                        <div class="flex justify-center items-center mb-4">
+                            <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">4 Months</span>
+                        </div>
+                        <button onclick="openModal('datascience-modal')" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <i class="fab fa-html5 course-icon mb-4"></i>
+                        <h3 class="text-xl font-semibold mb-2">Web Development</h3>
+                        <p class="text-gray-600 mb-4">Build modern responsive websites</p>
+                        <div class="flex justify-center items-center mb-4">
+                            <span class="bg-orange-100 text-orange-800 px-3 py-1 rounded-full text-sm">5 Months</span>
+                        </div>
+                        <button onclick="openModal('web-modal')" class="bg-green-600 text-white px-6 py-2 rounded-full hover:bg-green-700 transition duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Us Section -->
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-gray-800 mb-4">Why Choose Kuberac Academy?</h2>
+                    <p class="text-xl text-gray-600">We provide the best learning experience in Punjab</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-green-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-graduation-cap text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Expert Faculty</h3>
+                        <p class="text-gray-600">Learn from industry professionals with years of experience</p>
+                    </div>
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-laptop-code text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Hands-on Training</h3>
+                        <p class="text-gray-600">Practical approach with real-world projects and assignments</p>
+                    </div>
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-purple-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-certificate text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Certification</h3>
+                        <p class="text-gray-600">Industry-recognized certificates upon course completion</p>
+                    </div>
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-yellow-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-briefcase text-2xl text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Job Assistance</h3>
+                        <p class="text-gray-600">Career guidance and placement support for all students</p>
+                    </div>
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-red-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-clock text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Flexible Timing</h3>
+                        <p class="text-gray-600">Weekend and evening batches available for working professionals</p>
+                    </div>
+                    <div class="card-hover text-center p-6">
+                        <div class="bg-indigo-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-users text-2xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Small Batches</h3>
+                        <p class="text-gray-600">Limited students per batch for personalized attention</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Courses Page -->
+    <div id="courses-page" class="page hidden pt-20">
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <h1 class="text-4xl font-bold text-center text-gray-800 mb-4">Our IT Courses</h1>
+                <p class="text-xl text-center text-gray-600 mb-12">Comprehensive training programs designed for success</p>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Python Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 p-6 text-center">
+                            <i class="fab fa-python text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Python Programming</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Learn Python from scratch to advanced level. Perfect for beginners and professionals.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Basic to Advanced Python</li>
+                                <li>• Object-Oriented Programming</li>
+                                <li>• Web Frameworks (Django, Flask)</li>
+                                <li>• API Development</li>
+                            </ul>
+                            <button onclick="openModal('python-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Data Science Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-400 to-blue-600 p-6 text-center">
+                            <i class="fas fa-chart-line text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Data Science</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Master data analysis, visualization, and machine learning techniques.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Python for Data Science</li>
+                                <li>• Machine Learning</li>
+                                <li>• Data Visualization</li>
+                                <li>• Statistical Analysis</li>
+                            </ul>
+                            <button onclick="openModal('datascience-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Linux Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-gray-700 to-gray-900 p-6 text-center">
+                            <i class="fab fa-linux text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Linux Administration</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Become a Linux expert with comprehensive system administration training.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• Linux Fundamentals</li>
+                                <li>• System Administration</li>
+                                <li>• Shell Scripting</li>
+                                <li>• Server Management</li>
+                            </ul>
+                            <button onclick="openModal('linux-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Web Development Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-orange-400 to-red-500 p-6 text-center">
+                            <i class="fab fa-html5 text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">Web Development</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Build modern, responsive websites with HTML, CSS, and JavaScript.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• HTML5 & CSS3</li>
+                                <li>• JavaScript & ES6+</li>
+                                <li>• Responsive Design</li>
+                                <li>• Modern Frameworks</li>
+                            </ul>
+                            <button onclick="openModal('web-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- C/C++ Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-purple-500 to-purple-700 p-6 text-center">
+                            <i class="fas fa-code text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">C/C++ Programming</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Master the fundamentals of programming with C and C++.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• C Programming Basics</li>
+                                <li>• C++ Object-Oriented</li>
+                                <li>• Data Structures</li>
+                                <li>• Algorithm Design</li>
+                            </ul>
+                            <button onclick="openModal('cpp-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- PHP & MySQL Course -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 text-center">
+                            <i class="fab fa-php text-6xl text-white mb-4"></i>
+                            <h3 class="text-2xl font-bold text-white">PHP & MySQL</h3>
+                        </div>
+                        <div class="p-6">
+                            <p class="text-gray-600 mb-4">Build dynamic web applications with PHP and MySQL databases.</p>
+                            <ul class="text-sm text-gray-600 mb-4">
+                                <li>• PHP Programming</li>
+                                <li>• MySQL Database</li>
+                                <li>• Web Applications</li>
+                                <li>• CMS Development</li>
+                            </ul>
+                            <button onclick="openModal('php-modal')" class="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                View Details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- About Page -->
+    <div id="about-page" class="page hidden pt-20">
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">About Kuberac Academy</h1>
+                    <p class="text-xl text-gray-600">Empowering the next generation of IT professionals</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                    <div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-6">Our Mission</h2>
+                        <p class="text-gray-600 mb-6">At Kuberac Academy, we are dedicated to providing world-class IT education that bridges the gap between academic learning and industry requirements. Our comprehensive courses are designed to equip students with practical skills and knowledge needed to excel in today's technology-driven world.</p>
+                        
+                        <div class="grid grid-cols-2 gap-6 mb-8">
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">500+</div>
+                                <div class="text-gray-600">Students Trained</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">95%</div>
+                                <div class="text-gray-600">Job Placement Rate</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">10+</div>
+                                <div class="text-gray-600">Expert Instructors</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-3xl font-bold text-green-600 mb-2">5</div>
+                                <div class="text-gray-600">Years Experience</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-2xl p-8 text-white">
+                        <h3 class="text-2xl font-bold mb-6">Why Choose Us?</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Industry-relevant curriculum</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Hands-on practical training</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Expert instructors from industry</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Job placement assistance</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Flexible learning schedules</span>
+                            </li>
+                            <li class="flex items-center">
+                                <i class="fas fa-check-circle text-2xl mr-4"></i>
+                                <span>Modern learning facilities</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact Page -->
+    <div id="contact-page" class="page hidden pt-20">
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Contact Us</h1>
+                    <p class="text-xl text-gray-600">Get in touch with our team</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Send us a Message</h2>
+                        <form class="space-y-6" onsubmit="handleContactForm(event)">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                                <input type="text" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                                <input type="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Course Interest</label>
+                                <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                                    <option>Select a course</option>
+                                    <option>Python Programming</option>
+                                    <option>Data Science</option>
+                                    <option>Linux Administration</option>
+                                    <option>Web Development</option>
+                                    <option>C/C++ Programming</option>
+                                    <option>PHP & MySQL</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                                <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"></textarea>
+                            </div>
+                            <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                                Send Message
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Contact Information</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt text-green-600 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Address</h3>
+                                    <p class="text-gray-600">Village Pakhowal, Ludhiana<br>Punjab, India 141001</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone text-green-600 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Phone</h3>
+                                    <p class="text-gray-600">+91 98765 43210<br>+91 87654 32109</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-envelope text-green-600 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Email</h3>
+                                    <p class="text-gray-600">info@kuberacacademy.com<br>admissions@kuberacacademy.com</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock text-green-600 text-xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Office Hours</h3>
+                                    <p class="text-gray-600">Monday - Friday: 9:00 AM - 6:00 PM<br>Saturday: 9:00 AM - 4:00 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Follow Us</h3>
+                            <div class="flex space-x-4">
+                                <a href="#" class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="#" class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="bg-green-600 text-white p-3 rounded-full hover:bg-green-700 transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Test Page -->
+    <div id="test-page" class="page hidden pt-20">
+        <!-- Login/Signup Section -->
+        <div id="auth-section" class="min-h-screen bg-gradient-to-br from-green-400 to-green-600 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-md w-full space-y-8">
+                <div class="text-center">
+                    <h2 class="text-3xl font-bold text-white mb-2">Test Portal</h2>
+                    <p class="text-green-100">Login or signup to take tests</p>
+                </div>
+                
+                <!-- Login Form -->
+                <div id="login-form" class="bg-white rounded-xl shadow-2xl p-8">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Login</h3>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">User ID</label>
+                            <input type="text" id="login-userid" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="login-password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                            Login
+                        </button>
+                    </form>
+                    <p class="text-center mt-4 text-gray-600">
+                        Don't have an account? 
+                        <button onclick="showSignup()" class="text-green-600 hover:text-green-700 font-semibold">Sign up</button>
+                    </p>
+                </div>
+                
+                <!-- Signup Form -->
+                <div id="signup-form" class="bg-white rounded-xl shadow-2xl p-8 hidden">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 text-center">Sign Up</h3>
+                    <form onsubmit="handleSignup(event)">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+                            <input type="text" id="signup-name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" id="signup-email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">User ID</label>
+                            <input type="text" id="signup-userid" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <div class="mb-6">
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
+                            <input type="password" id="signup-password" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent">
+                        </div>
+                        <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                            Sign Up
+                        </button>
+                    </form>
+                    <p class="text-center mt-4 text-gray-600">
+                        Already have an account? 
+                        <button onclick="showLogin()" class="text-green-600 hover:text-green-700 font-semibold">Login</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Dashboard -->
+        <div id="test-dashboard" class="hidden">
+            <div class="bg-white shadow-lg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-800">Test Dashboard</h1>
+                            <p class="text-gray-600">Welcome, <span id="user-name"></span></p>
+                        </div>
+                        <button onclick="logout()" class="bg-red-600 text-white px-4 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                            Logout
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Test Categories -->
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-desktop text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Basic Computer</h3>
+                        <p class="text-gray-600 mb-4">Test your fundamental computer knowledge</p>
+                        <button onclick="startTest('computer')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                            Start Test
+                        </button>
+                    </div>
+                    
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="bg-orange-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-aws text-2xl text-orange-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">AWS Cloud</h3>
+                        <p class="text-gray-600 mb-4">Test your AWS cloud computing skills</p>
+                        <button onclick="startTest('aws')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                            Start Test
+                        </button>
+                    </div>
+                    
+                    <div class="card-hover bg-white rounded-xl shadow-lg p-6 text-center">
+                        <div class="bg-gray-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fab fa-linux text-2xl text-gray-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold mb-3">Linux</h3>
+                        <p class="text-gray-600 mb-4">Test your Linux system administration knowledge</p>
+                        <button onclick="startTest('linux')" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                            Start Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Interface -->
+        <div id="test-interface" class="hidden">
+            <div class="bg-white shadow-lg">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h1 class="text-2xl font-bold text-gray-800" id="test-title"></h1>
+                            <p class="text-gray-600">Question <span id="current-question">1</span> of <span id="total-questions">30</span></p>
+                        </div>
+                        <div class="text-right">
+                            <div class="text-2xl font-bold text-green-600" id="timer">30:00</div>
+                            <div class="text-sm text-gray-600">Time Remaining</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="bg-white rounded-xl shadow-lg p-8">
+                    <div class="mb-6">
+                        <h3 class="text-xl font-semibold mb-4" id="question-text"></h3>
+                        <div class="space-y-3" id="options-container">
+                            <!-- Options will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-between">
+                        <button onclick="previousQuestion()" id="prev-btn" class="bg-gray-600 text-white px-6 py-2 rounded-lg hover:bg-gray-700 transition duration-300" disabled>
+                            Previous
+                        </button>
+                        <button onclick="nextQuestion()" id="next-btn" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                            Next
+                        </button>
+                        <button onclick="submitTest()" id="submit-btn" class="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300 hidden">
+                            Submit Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Test Results -->
+        <div id="test-results" class="hidden">
+            <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+                <div class="bg-white rounded-xl shadow-lg p-8 text-center">
+                    <div class="mb-8">
+                        <div class="w-24 h-24 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-check-circle text-4xl text-green-600"></i>
+                        </div>
+                        <h2 class="text-3xl font-bold text-gray-800 mb-2">Test Completed!</h2>
+                        <p class="text-gray-600">Here are your results</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                        <div class="bg-green-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-green-600 mb-2" id="score-percentage">0%</div>
+                            <div class="text-gray-600">Overall Score</div>
+                        </div>
+                        <div class="bg-blue-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-blue-600 mb-2" id="correct-answers">0</div>
+                            <div class="text-gray-600">Correct Answers</div>
+                        </div>
+                        <div class="bg-red-50 p-6 rounded-lg">
+                            <div class="text-3xl font-bold text-red-600 mb-2" id="incorrect-answers">0</div>
+                            <div class="text-gray-600">Incorrect Answers</div>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-8">
+                        <div class="text-lg font-semibold mb-4" id="result-message"></div>
+                        <div class="w-full bg-gray-200 rounded-full h-4">
+                            <div class="bg-green-600 h-4 rounded-full transition-all duration-1000" id="progress-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="space-x-4">
+                        <button onclick="backToDashboard()" class="bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition duration-300">
+                            Back to Dashboard
+                        </button>
+                        <button onclick="retakeTest()" class="bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Retake Test
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Location Page -->
+    <div id="location-page" class="page hidden pt-20">
+        <section class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h1 class="text-4xl font-bold text-gray-800 mb-4">Our Location</h1>
+                    <p class="text-xl text-gray-600">Visit us at our modern campus</p>
+                </div>
+                
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Find Us Here</h2>
+                        <div class="bg-gray-200 rounded-lg h-96 flex items-center justify-center mb-6">
+                            <div class="text-center">
+                                <i class="fas fa-map-marked-alt text-6xl text-green-600 mb-4"></i>
+                                <h3 class="text-xl font-semibold text-gray-800 mb-2">Interactive Map</h3>
+                                <p class="text-gray-600">Village Pakhowal, Ludhiana<br>Punjab, India 141001</p>
+                                <button onclick="openGoogleMaps()" class="mt-4 bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                                    Open in Google Maps
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-lg p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Directions</h3>
+                            <ul class="space-y-2 text-gray-600">
+                                <li>• 5 minutes walk from Metro Station</li>
+                                <li>• Multiple bus stops nearby</li>
+                                <li>• Parking available on premises</li>
+                                <li>• Easy access from major highways</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-6">Campus Features</h2>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <i class="fas fa-building text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Modern Infrastructure</h3>
+                                    <p class="text-gray-600">State-of-the-art building with modern amenities and comfortable learning spaces.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-laptop text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Computer Labs</h3>
+                                    <p class="text-gray-600">Fully equipped computer labs with latest hardware and software for hands-on practice.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-wifi text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">High-Speed Internet</h3>
+                                    <p class="text-gray-600">Reliable high-speed internet connectivity throughout the campus.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-coffee text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Cafeteria</h3>
+                                    <p class="text-gray-600">On-campus cafeteria serving fresh meals and beverages.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-car text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Parking</h3>
+                                    <p class="text-gray-600">Secure parking facility available for students and visitors.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-book text-green-600 text-2xl mt-1 mr-4"></i>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800 mb-2">Library</h3>
+                                    <p class="text-gray-600">Well-stocked library with technical books and resources.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Course Modals -->
+    <div id="python-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Python Programming Course</h2>
+                <button onclick="closeModal('python-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-yellow-400 to-yellow-600 rounded-lg p-6 text-center mb-6">
+                    <i class="fab fa-python text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Master Python Programming</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Comprehensive Python programming course covering everything from basics to advanced concepts. Perfect for beginners and those looking to enhance their programming skills.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>Python syntax and fundamentals</li>
+                    <li>Data structures and algorithms</li>
+                    <li>Object-oriented programming</li>
+                    <li>File handling and database connectivity</li>
+                    <li>Web development with Django/Flask</li>
+                    <li>API development and integration</li>
+                    <li>Testing and debugging techniques</li>
+                    <li>Real-world project development</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">3 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Beginner to Advanced</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="datascience-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Data Science Course</h2>
+                <button onclick="closeModal('datascience-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-blue-400 to-blue-600 rounded-lg p-6 text-center mb-6">
+                    <i class="fas fa-chart-line text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Become a Data Scientist</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Comprehensive data science program covering statistical analysis, machine learning, and data visualization techniques using Python and popular libraries.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>Python for data science (NumPy, Pandas)</li>
+                    <li>Data visualization (Matplotlib, Seaborn)</li>
+                    <li>Statistical analysis and hypothesis testing</li>
+                    <li>Machine learning algorithms</li>
+                    <li>Deep learning fundamentals</li>
+                    <li>Data preprocessing and cleaning</li>
+                    <li>Model evaluation and deployment</li>
+                    <li>Real-world data science projects</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">4 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Intermediate</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="web-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Web Development Course</h2>
+                <button onclick="closeModal('web-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-orange-400 to-red-500 rounded-lg p-6 text-center mb-6">
+                    <i class="fab fa-html5 text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Full Stack Web Development</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Complete web development course covering frontend and backend technologies to build modern, responsive web applications.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>HTML5 and semantic markup</li>
+                    <li>CSS3 and responsive design</li>
+                    <li>JavaScript and ES6+ features</li>
+                    <li>Modern CSS frameworks (Bootstrap, Tailwind)</li>
+                    <li>JavaScript frameworks (React, Vue)</li>
+                    <li>Backend development (Node.js, Express)</li>
+                    <li>Database integration (MongoDB, MySQL)</li>
+                    <li>Deployment and hosting</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">5 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Beginner to Advanced</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="linux-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">Linux Administration Course</h2>
+                <button onclick="closeModal('linux-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-gray-700 to-gray-900 rounded-lg p-6 text-center mb-6">
+                    <i class="fab fa-linux text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Master Linux Systems</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Comprehensive Linux administration course covering system management, security, and server administration skills.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>Linux fundamentals and command line</li>
+                    <li>File system management</li>
+                    <li>User and group administration</li>
+                    <li>Process and service management</li>
+                    <li>Network configuration</li>
+                    <li>Security and permissions</li>
+                    <li>Shell scripting and automation</li>
+                    <li>Server administration</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">3 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Beginner to Intermediate</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="cpp-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">C/C++ Programming Course</h2>
+                <button onclick="closeModal('cpp-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-purple-500 to-purple-700 rounded-lg p-6 text-center mb-6">
+                    <i class="fas fa-code text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Master C/C++ Programming</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Fundamental programming course covering C and C++ languages, perfect for building strong programming foundations.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>C programming fundamentals</li>
+                    <li>Data types and control structures</li>
+                    <li>Functions and arrays</li>
+                    <li>Pointers and memory management</li>
+                    <li>Object-oriented programming in C++</li>
+                    <li>Classes and inheritance</li>
+                    <li>Data structures implementation</li>
+                    <li>Algorithm design and analysis</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">4 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Beginner</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="php-modal" class="modal">
+        <div class="modal-content max-w-2xl">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-bold text-gray-800">PHP & MySQL Course</h2>
+                <button onclick="closeModal('php-modal')" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="mb-6">
+                <div class="bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg p-6 text-center mb-6">
+                    <i class="fab fa-php text-6xl text-white mb-4"></i>
+                    <h3 class="text-2xl font-bold text-white">Dynamic Web Development</h3>
+                </div>
+                <h3 class="text-xl font-semibold mb-4">Course Overview</h3>
+                <p class="text-gray-600 mb-6">Complete PHP and MySQL course for building dynamic web applications and content management systems.</p>
+                
+                <h3 class="text-xl font-semibold mb-4">What You'll Learn</h3>
+                <ul class="list-disc list-inside text-gray-600 mb-6 space-y-2">
+                    <li>PHP syntax and fundamentals</li>
+                    <li>MySQL database design</li>
+                    <li>Database connectivity with PHP</li>
+                    <li>Form handling and validation</li>
+                    <li>Session and cookie management</li>
+                    <li>Object-oriented PHP</li>
+                    <li>CMS development</li>
+                    <li>Security best practices</li>
+                </ul>
+                
+                <div class="grid grid-cols-2 gap-4 mb-6">
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Duration</h4>
+                        <p class="text-green-600">3 Months</p>
+                    </div>
+                    <div class="bg-green-50 p-4 rounded-lg">
+                        <h4 class="font-semibold text-green-800">Level</h4>
+                        <p class="text-green-600">Intermediate</p>
+                    </div>
+                </div>
+                
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition duration-300 font-semibold">
+                    Enroll Now
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-xl font-bold mb-4">🎓 Kuberac Academy</h3>
+                    <p class="text-gray-300">Empowering the next generation of IT professionals with world-class training and education.</p>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" onclick="showPage('home')" class="text-gray-300 hover:text-green-400 transition duration-300">Home</a></li>
+                        <li><a href="#" onclick="showPage('courses')" class="text-gray-300 hover:text-green-400 transition duration-300">Courses</a></li>
+                        <li><a href="#" onclick="showPage('about')" class="text-gray-300 hover:text-green-400 transition duration-300">About</a></li>
+                        <li><a href="#" onclick="showPage('contact')" class="text-gray-300 hover:text-green-400 transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Popular Courses</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition duration-300">Python Programming</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition duration-300">Data Science</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition duration-300">Web Development</a></li>
+                        <li><a href="#" class="text-gray-300 hover:text-green-400 transition duration-300">Linux Administration</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-lg font-semibold mb-4">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li><i class="fas fa-map-marker-alt mr-2"></i>Village Pakhowal, Ludhiana</li>
+                        <li><i class="fas fa-phone mr-2"></i>+91 98765 43210</li>
+                        <li><i class="fas fa-envelope mr-2"></i>info@kuberacacademy.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 Kuberac Academy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Page Navigation
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.add('hidden'));
+            
+            // Show selected page
+            document.getElementById(pageId + '-page').classList.remove('hidden');
+            
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+        }
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        // Carousel Functionality
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.carousel-slide');
+        const totalSlides = slides.length;
+
+        function showSlide(index) {
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[index].classList.add('active');
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            showSlide(currentSlide);
+        }
+
+        // Auto-advance carousel
+        setInterval(nextSlide, 5000);
+
+        // Modal Functions
+        function openModal(modalId) {
+            document.getElementById(modalId).classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.classList.remove('active');
+                    document.body.style.overflow = 'auto';
+                }
+            });
+        }
+
+        // Contact Form Handler
+        function handleContactForm(event) {
+            event.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            event.target.reset();
+        }
+
+        // Google Maps Function
+        function openGoogleMaps() {
+            const address = "Village Pakhowal, Ludhiana, Punjab, India 141001";
+            const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}`;
+            window.open(url, '_blank');
+        }
+
+        // Test System Variables
+        let currentUser = null;
+        let currentTest = null;
+        let currentQuestionIndex = 0;
+        let userAnswers = [];
+        let testTimer = null;
+        let timeRemaining = 1800; // 30 minutes in seconds
+
+        // Test Questions Database
+        const testQuestions = {
+            computer: [
+                {
+                    question: "What does CPU stand for?",
+                    options: ["Central Processing Unit", "Computer Personal Unit", "Central Program Unit", "Computer Processing Unit"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is an input device?",
+                    options: ["Monitor", "Printer", "Keyboard", "Speaker"],
+                    correct: 2
+                },
+                {
+                    question: "What is the brain of the computer?",
+                    options: ["Hard Drive", "RAM", "CPU", "Motherboard"],
+                    correct: 2
+                },
+                {
+                    question: "Which key is used to delete characters to the left of cursor?",
+                    options: ["Delete", "Backspace", "Ctrl", "Alt"],
+                    correct: 1
+                },
+                {
+                    question: "What does RAM stand for?",
+                    options: ["Random Access Memory", "Read Access Memory", "Random Available Memory", "Read Available Memory"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is system software?",
+                    options: ["MS Word", "Operating System", "Calculator", "Web Browser"],
+                    correct: 1
+                },
+                {
+                    question: "What is the full form of USB?",
+                    options: ["Universal Serial Bus", "Universal System Bus", "Uniform Serial Bus", "Uniform System Bus"],
+                    correct: 0
+                },
+                {
+                    question: "Which device is used to connect to the internet?",
+                    options: ["Printer", "Scanner", "Modem", "Speaker"],
+                    correct: 2
+                },
+                {
+                    question: "What is the smallest unit of data in computer?",
+                    options: ["Bit", "Byte", "Nibble", "Word"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is volatile memory?",
+                    options: ["Hard Disk", "ROM", "RAM", "CD-ROM"],
+                    correct: 2
+                },
+                {
+                    question: "What does GUI stand for?",
+                    options: ["Graphical User Interface", "General User Interface", "Graphical Uniform Interface", "General Uniform Interface"],
+                    correct: 0
+                },
+                {
+                    question: "Which company developed Windows operating system?",
+                    options: ["Apple", "Google", "Microsoft", "IBM"],
+                    correct: 2
+                },
+                {
+                    question: "What is the extension of executable files in Windows?",
+                    options: [".txt", ".exe", ".doc", ".pdf"],
+                    correct: 1
+                },
+                {
+                    question: "Which protocol is used for sending emails?",
+                    options: ["HTTP", "FTP", "SMTP", "TCP"],
+                    correct: 2
+                },
+                {
+                    question: "What does WWW stand for?",
+                    options: ["World Wide Web", "World Wide Window", "World Web Window", "Wide World Web"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is an antivirus software?",
+                    options: ["MS Word", "Norton", "Photoshop", "Excel"],
+                    correct: 1
+                },
+                {
+                    question: "What is the main circuit board of computer called?",
+                    options: ["CPU", "Motherboard", "RAM", "Hard Drive"],
+                    correct: 1
+                },
+                {
+                    question: "Which key combination is used to copy text?",
+                    options: ["Ctrl+V", "Ctrl+C", "Ctrl+X", "Ctrl+Z"],
+                    correct: 1
+                },
+                {
+                    question: "What does PDF stand for?",
+                    options: ["Portable Document Format", "Personal Document Format", "Portable Data Format", "Personal Data Format"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is a web browser?",
+                    options: ["MS Word", "Chrome", "Excel", "PowerPoint"],
+                    correct: 1
+                },
+                {
+                    question: "What is the default port number for HTTP?",
+                    options: ["21", "25", "80", "443"],
+                    correct: 2
+                },
+                {
+                    question: "Which device is used to scan documents?",
+                    options: ["Printer", "Scanner", "Monitor", "Keyboard"],
+                    correct: 1
+                },
+                {
+                    question: "What does LAN stand for?",
+                    options: ["Local Area Network", "Large Area Network", "Local Access Network", "Large Access Network"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is an output device?",
+                    options: ["Mouse", "Keyboard", "Monitor", "Microphone"],
+                    correct: 2
+                },
+                {
+                    question: "What is the function of firewall?",
+                    options: ["Speed up internet", "Block viruses", "Network security", "Data storage"],
+                    correct: 2
+                },
+                {
+                    question: "Which file format is used for images?",
+                    options: [".txt", ".doc", ".jpg", ".exe"],
+                    correct: 2
+                },
+                {
+                    question: "What does IP stand for in IP address?",
+                    options: ["Internet Protocol", "Internal Protocol", "Internet Program", "Internal Program"],
+                    correct: 0
+                },
+                {
+                    question: "Which of the following is cloud storage service?",
+                    options: ["MS Word", "Google Drive", "Calculator", "Paint"],
+                    correct: 1
+                },
+                {
+                    question: "What is the maximum length of filename in Windows?",
+                    options: ["8 characters", "255 characters", "128 characters", "512 characters"],
+                    correct: 1
+                },
+                {
+                    question: "Which technology is used in CD-ROM?",
+                    options: ["Magnetic", "Optical", "Electronic", "Mechanical"],
+                    correct: 1
+                }
+            ],
+            aws: [
+                {
+                    question: "What does AWS stand for?",
+                    options: ["Amazon Web Services", "Amazon Web Systems", "Amazon World Services", "Amazon Wide Services"],
+                    correct: 0
+                },
+                {
+                    question: "Which AWS service is used for computing?",
+                    options: ["S3", "EC2", "RDS", "Route 53"],
+                    correct: 1
+                },
+                {
+                    question: "What is Amazon S3 used for?",
+                    options: ["Computing", "Storage", "Database", "Networking"],
+                    correct: 1
+                },
+                {
+                    question: "Which AWS service provides DNS?",
+                    options: ["EC2", "S3", "Route 53", "RDS"],
+                    correct: 2
+                },
+                {
+                    question: "What does EC2 stand for?",
+                    options: ["Elastic Compute Cloud", "Elastic Container Cloud", "Elastic Computing Cloud", "Elastic Control Cloud"],
+                    correct: 0
+                },
+                {
+                    question: "Which service is used for database in AWS?",
+                    options: ["S3", "EC2", "RDS", "Lambda"],
+                    correct: 2
+                },
+                {
+                    question: "What is AWS Lambda?",
+                    options: ["Storage service", "Serverless computing", "Database service", "Networking service"],
+                    correct: 1
+                },
+                {
+                    question: "Which AWS service provides CDN?",
+                    options: ["CloudFront", "S3", "EC2", "RDS"],
+                    correct: 0
+                },
+                {
+                    question: "What is the default region for AWS?",
+                    options: ["us-east-1", "us-west-1", "eu-west-1", "ap-south-1"],
+                    correct: 0
+                },
+                {
+                    question: "Which service is used for monitoring in AWS?",
+                    options: ["CloudWatch", "CloudTrail", "Config", "Inspector"],
+                    correct: 0
+                },
+                {
+                    question: "What is Amazon VPC?",
+                    options: ["Virtual Private Cloud", "Virtual Public Cloud", "Virtual Private Computing", "Virtual Public Computing"],
+                    correct: 0
+                },
+                {
+                    question: "Which AWS service provides load balancing?",
+                    options: ["ELB", "EC2", "S3", "RDS"],
+                    correct: 0
+                },
+                {
+                    question: "What is the maximum size of S3 object?",
+                    options: ["5 GB", "5 TB", "1 TB", "10 TB"],
+                    correct: 1
+                },
+                {
+                    question: "Which service is used for container orchestration?",
+                    options: ["ECS", "EC2", "S3", "RDS"],
+                    correct: 0
+                },
+                {
+                    question: "What does IAM stand for?",
+                    options: ["Identity and Access Management", "Internet Access Management", "Internal Access Management", "Identity Access Module"],
+                    correct: 0
+                },
+                {
+                    question: "Which AWS service provides message queuing?",
+                    options: ["SQS", "SNS", "SES", "SWF"],
+                    correct: 0
+                },
+                {
+                    question: "What is Amazon CloudFormation?",
+                    options: ["Monitoring service", "Infrastructure as Code", "Storage service", "Computing service"],
+                    correct: 1
+                },
+                {
+                    question: "Which service provides email functionality?",
+                    options: ["SES", "SNS", "SQS", "SWF"],
+                    correct: 0
+                },
+                {
+                    question: "What is the pricing model of AWS Lambda?",
+                    options: ["Pay per hour", "Pay per request", "Monthly subscription", "Annual subscription"],
+                    correct: 1
+                },
+                {
+                    question: "Which service is used for data warehousing?",
+                    options: ["Redshift", "RDS", "DynamoDB", "ElastiCache"],
+                    correct: 0
+                },
+                {
+                    question: "What is Amazon Glacier?",
+                    options: ["Computing service", "Archive storage", "Database service", "Networking service"],
+                    correct: 1
+                },
+                {
+                    question: "Which service provides NoSQL database?",
+                    options: ["RDS", "DynamoDB", "Redshift", "ElastiCache"],
+                    correct: 1
+                },
+                {
+                    question: "What is AWS Auto Scaling?",
+                    options: ["Manual scaling", "Automatic resource scaling", "Storage scaling", "Network scaling"],
+                    correct: 1
+                },
+                {
+                    question: "Which service is used for API management?",
+                    options: ["API Gateway", "Lambda", "EC2", "S3"],
+                    correct: 0
+                },
+                {
+                    question: "What is Amazon EBS?",
+                    options: ["Elastic Block Store", "Elastic Bean Stalk", "Elastic Block Service", "Elastic Bean Service"],
+                    correct: 0
+                },
+                {
+                    question: "Which service provides in-memory caching?",
+                    options: ["ElastiCache", "RDS", "DynamoDB", "Redshift"],
+                    correct: 0
+                },
+                {
+                    question: "What is AWS CloudTrail?",
+                    options: ["Monitoring service", "Audit logging", "Storage service", "Computing service"],
+                    correct: 1
+                },
+                {
+                    question: "Which service is used for machine learning?",
+                    options: ["SageMaker", "Lambda", "EC2", "S3"],
+                    correct: 0
+                },
+                {
+                    question: "What is the AWS free tier limit for EC2?",
+                    options: ["750 hours/month", "500 hours/month", "1000 hours/month", "250 hours/month"],
+                    correct: 0
+                },
+                {
+                    question: "Which service provides serverless database?",
+                    options: ["RDS", "DynamoDB", "Aurora Serverless", "Both B and C"],
+                    correct: 3
+                }
+            ],
+            linux: [
+                {
+                    question: "What does Linux stand for?",
+                    options: ["Linux Is Not Unix", "Linux Internet Network Unix", "Linux Internal Network Unix", "Linux Is New Unix"],
+                    correct: 0
+                },
+                {
+                    question: "Who created Linux?",
+                    options: ["Bill Gates", "Steve Jobs", "Linus Torvalds", "Richard Stallman"],
+                    correct: 2
+                },
+                {
+                    question: "Which command is used to list files?",
+                    options: ["ls", "list", "dir", "show"],
+                    correct: 0
+                },
+                {
+                    question: "What is the root directory in Linux?",
+                    options: ["/root", "/", "/home", "/usr"],
+                    correct: 1
+                },
+                {
+                    question: "Which command is used to change directory?",
+                    options: ["cd", "chdir", "change", "dir"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'pwd' command do?",
+                    options: ["Print working directory", "Password", "Power down", "Print word"],
+                    correct: 0
+                },
+                {
+                    question: "Which command is used to create a directory?",
+                    options: ["mkdir", "makedir", "createdir", "newdir"],
+                    correct: 0
+                },
+                {
+                    question: "What is the default shell in most Linux distributions?",
+                    options: ["csh", "bash", "zsh", "fish"],
+                    correct: 1
+                },
+                {
+                    question: "Which command is used to remove files?",
+                    options: ["rm", "del", "delete", "remove"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'chmod' command do?",
+                    options: ["Change mode/permissions", "Change owner", "Change directory", "Change file"],
+                    correct: 0
+                },
+                {
+                    question: "Which file contains user account information?",
+                    options: ["/etc/passwd", "/etc/shadow", "/etc/group", "/etc/hosts"],
+                    correct: 0
+                },
+                {
+                    question: "What is the superuser account called?",
+                    options: ["admin", "root", "super", "user"],
+                    correct: 1
+                },
+                {
+                    question: "Which command shows running processes?",
+                    options: ["ps", "proc", "process", "show"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'grep' command do?",
+                    options: ["Search text patterns", "Group files", "Get files", "Generate report"],
+                    correct: 0
+                },
+                {
+                    question: "Which command is used to copy files?",
+                    options: ["cp", "copy", "cpy", "duplicate"],
+                    correct: 0
+                },
+                {
+                    question: "What is the Linux kernel?",
+                    options: ["User interface", "Core of operating system", "File manager", "Text editor"],
+                    correct: 1
+                },
+                {
+                    question: "Which command shows disk usage?",
+                    options: ["du", "df", "disk", "usage"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'sudo' stand for?",
+                    options: ["Super User Do", "Switch User Do", "System User Do", "Secure User Do"],
+                    correct: 0
+                },
+                {
+                    question: "Which file system is commonly used in Linux?",
+                    options: ["NTFS", "FAT32", "ext4", "HFS+"],
+                    correct: 2
+                },
+                {
+                    question: "What is a daemon in Linux?",
+                    options: ["Error message", "Background process", "File type", "Command"],
+                    correct: 1
+                },
+                {
+                    question: "Which command is used to find files?",
+                    options: ["find", "search", "locate", "both A and C"],
+                    correct: 3
+                },
+                {
+                    question: "What does 'tar' command do?",
+                    options: ["Archive files", "Transfer files", "Transform files", "Translate files"],
+                    correct: 0
+                },
+                {
+                    question: "Which directory contains system binaries?",
+                    options: ["/bin", "/usr", "/home", "/var"],
+                    correct: 0
+                },
+                {
+                    question: "What is a symbolic link?",
+                    options: ["Hard link", "Shortcut to file", "File copy", "File backup"],
+                    correct: 1
+                },
+                {
+                    question: "Which command shows system information?",
+                    options: ["uname", "info", "system", "about"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'cron' do?",
+                    options: ["Schedule tasks", "Create files", "Copy files", "Compress files"],
+                    correct: 0
+                },
+                {
+                    question: "Which command is used to mount filesystems?",
+                    options: ["mount", "attach", "connect", "link"],
+                    correct: 0
+                },
+                {
+                    question: "What is the purpose of /etc directory?",
+                    options: ["User files", "System configuration", "Temporary files", "Log files"],
+                    correct: 1
+                },
+                {
+                    question: "Which command shows network connections?",
+                    options: ["netstat", "network", "connect", "net"],
+                    correct: 0
+                },
+                {
+                    question: "What does 'vi' or 'vim' refer to?",
+                    options: ["File manager", "Text editor", "Web browser", "Media player"],
+                    correct: 1
+                }
+            ]
+        };
+
+        // Authentication Functions
+        function showSignup() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('signup-form').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('signup-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        function handleLogin(event) {
+            event.preventDefault();
+            const userid = document.getElementById('login-userid').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation (in real app, this would be server-side)
+            if (userid && password) {
+                currentUser = { userid: userid, name: userid };
+                document.getElementById('user-name').textContent = userid;
+                document.getElementById('auth-section').classList.add('hidden');
+                document.getElementById('test-dashboard').classList.remove('hidden');
+            } else {
+                alert('Please enter valid credentials');
+            }
+        }
+
+        function handleSignup(event) {
+            event.preventDefault();
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const userid = document.getElementById('signup-userid').value;
+            const password = document.getElementById('signup-password').value;
+            
+            if (name && email && userid && password) {
+                alert('Account created successfully! Please login.');
+                showLogin();
+            } else {
+                alert('Please fill all fields');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            document.getElementById('test-dashboard').classList.add('hidden');
+            document.getElementById('test-interface').classList.add('hidden');
+            document.getElementById('test-results').classList.add('hidden');
+            document.getElementById('auth-section').classList.remove('hidden');
+            showLogin();
+        }
+
+        // Test Functions
+        function startTest(testType) {
+            currentTest = testType;
+            currentQuestionIndex = 0;
+            userAnswers = [];
+            timeRemaining = 1800; // 30 minutes
+            
+            const questions = testQuestions[testType];
+            for (let i = 0; i < questions.length; i++) {
+                userAnswers[i] = null;
+            }
+            
+            document.getElementById('test-dashboard').classList.add('hidden');
+            document.getElementById('test-interface').classList.remove('hidden');
+            
+            const titles = {
+                computer: 'Basic Computer Test',
+                aws: 'AWS Cloud Test',
+                linux: 'Linux Administration Test'
+            };
+            
+            document.getElementById('test-title').textContent = titles[testType];
+            document.getElementById('total-questions').textContent = questions.length;
+            
+            startTimer();
+            displayQuestion();
+        }
+
+        function displayQuestion() {
+            const questions = testQuestions[currentTest];
+            const question = questions[currentQuestionIndex];
+            
+            document.getElementById('current-question').textContent = currentQuestionIndex + 1;
+            document.getElementById('question-text').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement('div');
+                optionDiv.className = 'flex items-center';
+                optionDiv.innerHTML = `
+                    <input type="radio" id="option-${index}" name="answer" value="${index}" 
+                           ${userAnswers[currentQuestionIndex] === index ? 'checked' : ''}
+                           class="mr-3 text-green-600 focus:ring-green-500">
+                    <label for="option-${index}" class="text-gray-700 cursor-pointer">${option}</label>
+                `;
+                optionsContainer.appendChild(optionDiv);
+            });
+            
+            // Update navigation buttons
+            document.getElementById('prev-btn').disabled = currentQuestionIndex === 0;
+            document.getElementById('next-btn').style.display = currentQuestionIndex === questions.length - 1 ? 'none' : 'block';
+            document.getElementById('submit-btn').style.display = currentQuestionIndex === questions.length - 1 ? 'block' : 'none';
+        }
+
+        function previousQuestion() {
+            saveCurrentAnswer();
+            if (currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                displayQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            saveCurrentAnswer();
+            const questions = testQuestions[currentTest];
+            if (currentQuestionIndex < questions.length - 1) {
+                currentQuestionIndex++;
+                displayQuestion();
+            }
+        }
+
+        function saveCurrentAnswer() {
+            const selectedOption = document.querySelector('input[name="answer"]:checked');
+            if (selectedOption) {
+                userAnswers[currentQuestionIndex] = parseInt(selectedOption.value);
+            }
+        }
+
+        function submitTest() {
+            saveCurrentAnswer();
+            clearInterval(testTimer);
+            
+            const questions = testQuestions[currentTest];
+            let correctCount = 0;
+            
+            for (let i = 0; i < questions.length; i++) {
+                if (userAnswers[i] === questions[i].correct) {
+                    correctCount++;
+                }
+            }
+            
+            const percentage = Math.round((correctCount / questions.length) * 100);
+            const incorrectCount = questions.length - correctCount;
+            
+            document.getElementById('test-interface').classList.add('hidden');
+            document.getElementById('test-results').classList.remove('hidden');
+            
+            document.getElementById('score-percentage').textContent = percentage + '%';
+            document.getElementById('correct-answers').textContent = correctCount;
+            document.getElementById('incorrect-answers').textContent = incorrectCount;
+            
+            let message = '';
+            if (percentage >= 80) {
+                message = 'Excellent! Outstanding performance!';
+            } else if (percentage >= 60) {
+                message = 'Good job! You passed the test.';
+            } else {
+                message = 'Keep practicing. You can do better!';
+            }
+            
+            document.getElementById('result-message').textContent = message;
+            document.getElementById('progress-bar').style.width = percentage + '%';
+        }
+
+        function startTimer() {
+            testTimer = setInterval(() => {
+                timeRemaining--;
+                const minutes = Math.floor(timeRemaining / 60);
+                const seconds = timeRemaining % 60;
+                document.getElementById('timer').textContent = 
+                    `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+                
+                if (timeRemaining <= 0) {
+                    submitTest();
+                }
+            }, 1000);
+        }
+
+        function backToDashboard() {
+            document.getElementById('test-results').classList.add('hidden');
+            document.getElementById('test-dashboard').classList.remove('hidden');
+        }
+
+        function retakeTest() {
+            startTest(currentTest);
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navbar
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-xl');
+            } else {
+                navbar.classList.remove('shadow-xl');
+            }
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'967aea08d25f8e90',t:'MTc1Mzk0MjAzMy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
